@@ -1,0 +1,43 @@
+#Lab 2 Part 4
+
+.data
+
+arrA:  .word 0, 0, 0, 0, 0
+arrB:  .word 1, 2, 4, 8, 16
+
+.text
+
+li a0, 0 #i = 0
+li a1, 5 #n = 5
+la a2, arrA
+la a3, arrB
+
+for:
+  lw a4, 0(a3) #a4 = B[i]
+  addi a4, a4, -1 #a4 = B[i] -1
+  sw a4, 0(a2) #A[i] = B[i]-1 (a4)
+  addi a2, a2, 4 #A[i++]
+  addi a3, a3, 4 #B{i++]
+  addi a0, a0 1 #i+=1
+  blt a0, a1, for #if i < 5 return to for:
+  
+addi a0, a0, -1 # i--
+li a1, 2 #a1 = 2 for multiplication in while loop  
+  
+
+
+    
+  while:
+    addi a2, a2, -4 #A[i--]
+    addi a3, a3, -4 #B[i--]
+    lw a4, 0(a2) # a4 = a{i}
+    lw a5, 0(a3) # a5 = B[i]
+    add a4, a4, a5 # a4 = A[i] + B[i]
+    mul a4, a4, a1 # a4 * 2 
+    sw a4, 0(a2) # A[i] = (A[i} + B[i]) * 2
+    addi a0, a0, -1
+    ble x0, a0, while # if 0<= i move to while loop commands
+    
+    #end
+    
+    
